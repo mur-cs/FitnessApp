@@ -1,0 +1,27 @@
+﻿@model ArticleViewModel
+
+<div class="category-info">
+    <h1>@Model.Category.Name</h1>
+    <p>@Model.Category.Description</p>
+    <p>Кількість статей: @Model.Articles.Count</p>
+</div>
+
+<div class="articles-list">
+    <h2>Статті</h2>
+    <ul>
+        @foreach (var article in Model.Articles)
+        {
+            <li>
+                <h3>
+                    <a asp-controller="Home" asp-action="Details" asp-route-articleId="@article.Id">
+                        @article.Name
+                    </a>
+                </h3>
+                <p>
+                    @(article.Description.Length > 300 ? article.Description.Substring(0, 300) + "..." : article.Description)
+                </p>
+            </li>
+        }
+    </ul>
+</div>
+
